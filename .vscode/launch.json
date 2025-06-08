@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "UpdateData",
+            "request": "launch",
+            "mainClass": "UpdateData",
+            "projectName": "sdc_f25dfa18"
+        },
+        {
+            "type": "java",
+            "name": "DeleteData",
+            "request": "launch",
+            "mainClass": "DeleteData",
+            "projectName": "sdc_f25dfa18"
+        },
+        {
+            "type": "java",
+            "name": "InsertData",
+            "request": "launch",
+            "mainClass": "InsertData",
+            "projectName": "sdc_f25dfa18"
+        },
+        {
+            "type": "java",
+            "name": "DisplayData",
+            "request": "launch",
+            "mainClass": "DisplayData",
+            "projectName": "sdc_f25dfa18"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}

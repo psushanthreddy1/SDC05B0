@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS student (
+s_id INT PRIMARY KEY,
+s_nameVARCHAR(255),
+s_addressVARCHAR(255)
+);

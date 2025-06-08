@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <!-- Add some basic styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      font-size: 1.2em;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .form-group button {
+      padding: 10px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      text-align: center;
+    }
+    #temperature {
+      font-size: 2em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weather Information</h1>
+
+  <div class="container">
+    <div class="form-group">
+      <label for="city">Enter City:</label>
+      <input type="text" id="city" placeholder="Enter city name">
+    </div>
+    <div class="form-group">
+      <button id="getWeatherBtn">Get Weather</button>
+    </div>
+
+    <div id="result">
+      <div id="temperature"></div>
+      <div id="error" style="color: red;"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('getWeatherBtn').addEventListener('click', async function() {
+      const city = document.getElementById('city').value.trim();
+      if (!city) {
+        alert('Please enter a city name!');
+        return;
+      }
+  
+      try {
+        // Fetch weather data from the server API
+        const response = await fetch(`/weather/${city}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          const temperature = data.temperature;
+  
+          // Format the temperature to 2 decimal places
+          const formattedTemperature = temperature.toFixed(0);
+          
+          // Display formatted temperature
+          document.getElementById('temperature').textContent = `Temperature: ${formattedTemperature}°C`;
+          document.getElementById('error').textContent = ''; // Clear previous errors
+        } else {
+          // Handle case if city is not found or API fails
+          const errorData = await response.json();
+          document.getElementById('temperature').textContent = '';
+          document.getElementById('error').textContent = errorData.error || 'Error fetching data.';
+        }
+      } catch (error) {
+        // Handle any network or other errors
+        document.getElementById('temperature').textContent = '';
+        document.getElementById('error').textContent = 'Error connecting to server. Please try again.';
+      }
+    });
+  </script>
+
+</body>
+</html>
